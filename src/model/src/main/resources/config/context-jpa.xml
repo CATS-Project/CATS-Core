@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans 
+    xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+            http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ============================= -->
+	<!-- ENTITY MANAGER                -->
+	<!-- ============================= -->	
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    	<property name="dataSource" ref="postgre" />
+        <property name="persistenceUnitName" value="springDataJPA" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+        </property>
+        <property name="jpaProperties">
+            <props>
+                
+                <!-- dialect -->
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>-->
+                <prop key="hibernate.connection.useUnicode">true</prop>
+                <prop key="hibernate.connection.charSet">UTF-8</prop>
+                <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+                
+                <!-- schema -->
+                <prop key="hibernate.default_schema">public</prop>
+                
+                <!-- 2d level cache -->
+                <prop key="hibernate.cache.use_query_cache">false</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                
+                <!-- ehcache -->
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+                
+                <!-- misc -->
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.jdbc.use_scrollable_resultset">true</prop>
+                <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
+                <prop key="hibernate.jdbc.fetch_size">16</prop>
+                
+                <!-- logging debug information -->
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">false</prop>
+                <prop key="hibernate.generate_statistics">false</prop>
+                <prop key="hibernate.use_sql_comments">false</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                
+            </props>
+        </property>
+    </bean>
+    
+    <!-- ============================= -->
+	<!-- TRANSACTION MANAGER           -->
+	<!-- ============================= -->	
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    
+    <!-- ============================= -->
+	<!-- SESSION FACTORY               -->
+	<!-- ============================= -->	
+	<bean id="sessionFactory" factory-bean="entityManagerFactory" factory-method="getSessionFactory" />
+        
+
+</beans>

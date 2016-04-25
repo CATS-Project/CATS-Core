@@ -1,0 +1,79 @@
+header, main, footer {
+    padding-left: 150px;
+}
+
+header nav .page-title{
+    font-size: 48px;
+    line-height: 122px;
+}
+
+header nav.top-nav{
+    height: 122px;
+}
+
+input.no-margin{
+    margin: 0;
+}
+
+input.no-padding{
+    padding: 0;
+}
+
+#map {
+    height: 100%;
+}
+
+ul#nav-mobile li:first-child{
+    margin-top: 2rem;
+}
+
+.subCorpuses{
+	margin-left: 35px !important;
+	color:#4B3ACE !important;
+}
+
+.btn-little{
+    background-color: #66757f;
+    width: 18em;
+}
+
+.btn{
+    background-color: #66757f;
+    width: 35em;
+}
+
+
+
+.btn:hover {
+	background-color: #292f33;
+}
+
+nav {
+    background-color: #55acee;
+}
+
+.valid {
+	border-bottom-color: #292f33;
+}
+
+.active {
+	color: #292f33;
+}
+
+.collection a.collection-item {
+	color: #55acee;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #55acee;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #55acee;
+    box-shadow: 0 1px 0 0 #55acee;
+}
+
+.input-field option{
+    color:#55acee;
+}

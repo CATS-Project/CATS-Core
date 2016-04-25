@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans 
+    xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xmlns:solr="http://www.springframework.org/schema/data/solr"
+    xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/data/solr
+        http://www.springframework.org/schema/data/solr/spring-solr.xsd">
+
+ 
+
+    <context:component-scan base-package="cats.twitter" />
+    <tx:annotation-driven/>
+    <solr:repositories base-package="cats.twitter.repository" />
+    <jpa:repositories base-package="cats.twitter.repository" />
+	
+    <import resource="classpath:/config/context-datasource.xml"/>
+    <import resource="classpath:/config/context-jpa.xml"/>
+
+</beans>

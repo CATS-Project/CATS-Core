@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <import resource="classpath:config/applicationContext.xml"/>
+
+    <context:annotation-config />
+
+    <context:component-scan base-package="cats.twitter" />
+
+    <context:property-placeholder location="classpath*:application.properties"/>
+
+    <bean id="oauthToken" class="cats.twitter.webapp.dto.OAuthToken">
+        <property name="consumerKey" value="${twitter.consumerKey}"/>
+        <property name="consumerSecret" value="${twitter.consumerSecret}"/>
+    </bean>
+    <bean id="accessToken" class="cats.twitter.webapp.dto.MyAccessToken"/>
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+
+    <!--
+        Here, we generate the collect form, the corresponding list of value are links to jsp.
+        Each jsp represent one field. If you like to add a field on the collect field, just add
+        a value as a link to your JSP
+    -->
+    <bean class="cats.twitter.webapp.form.CorpusFormService">
+        <property name="formList">
+            <props>
+                <prop key="Keywords">formModule/Keywords.jsp</prop>
+                <prop key="Map">formModule/Map.jsp</prop>
+                <prop key="Users">formModule/User.jsp</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

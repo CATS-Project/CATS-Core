@@ -1,0 +1,45 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http security="none" pattern="/resources/**"/>
+    <http security="none" pattern="/favicon.ico"/>
+
+    <beans:bean id="passwordEncoder"
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <beans:bean id="successHandler" class="cats.twitter.security.SuccessHandler"/>
+
+    <http auto-config="true" use-expressions="true">
+
+        <csrf disabled="true"/>
+        <intercept-url pattern="/connect" access="permitAll()"/>
+        <intercept-url pattern="/module/**" access="permitAll()"/>
+        <intercept-url pattern="/logout" access="permitAll()"/>
+        <intercept-url pattern="/register" access="permitAll()"/>
+        <intercept-url pattern="/newUser" access="permitAll()"/>
+        <intercept-url pattern="/api/**" access="permitAll()"/>
+        <intercept-url pattern="/api-chain/**" access="permitAll()"/>
+        <form-login default-target-url="/associate" login-page="/connect"
+                    login-processing-url="/j_spring_security_check"
+                    authentication-failure-url="/connect?error" authentication-success-handler-ref="successHandler"
+                    username-parameter="login" password-parameter="password"/>
+
+        <intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')"/>
+        <intercept-url pattern="/**" access="hasAuthority('ROLE_USER')"/>
+        <logout logout-url="/logout" logout-success-url="/connect?logout"
+                invalidate-session="true"/>
+    </http>
+
+
+    <authentication-manager>
+        <authentication-provider user-service-ref="userDetailsService">
+            <password-encoder ref="passwordEncoder"/>
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>
