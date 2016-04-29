@@ -71,7 +71,7 @@
                         <td>${entry.name}</td>
                         <td>${entry.text}</td>
                         <td>${entry.descriptionAuthor}</td>
-                        <td><fmt:formatDate value="${entry.date}" pattern="yyyy-MM-dd HH:mm" /></td>
+                        <td><fmt:formatDate value="${entry.date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                     </tr>
                 </c:forEach>
                 </tbody>

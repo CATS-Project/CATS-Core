@@ -40,7 +40,7 @@ public class CSVServiceImpl implements CSVService
 	@Autowired
 	TweetRepository tweetRepository;
 
-	private static int LIMIT = 100000;
+	private static int LIMIT = 2000000;
 
 	/**
 	 * Create a corpus from a csv file.

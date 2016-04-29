@@ -31,7 +31,7 @@
                 </div>
                 
                 <div class="row">
-                	<label for="regexp">Regular Expression (e.g. .+ing[,;:?!\s] will match words ending with 'ing' ; See <a href="http://www.vogella.com/tutorials/JavaRegularExpressions/article.html">this page</a> to learn more about regular expression)</label>
+                	<label for="regexp">Regular Expression (e.g. .+ing[,;:?!\s] will match words ending with 'ing' ; See <a href="http://www.vogella.com/tutorials/JavaRegularExpressions/article.html" target="_blank">this page</a> to learn more about regular expressions; We recommend using this online regex <a href="https://regex101.com" target="_blank">tester</a>)</label>
                 	<input id="regexp" type="text" class="validate" name="regexp">
                 </div>
                 

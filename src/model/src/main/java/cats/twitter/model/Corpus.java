@@ -41,6 +41,7 @@ public class Corpus implements Serializable
 	private User user;
 
 	@OneToMany(mappedBy = "corpus", fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.REMOVE})
+	@OrderBy("initdate DESC")
 	private Set<Request> requests;
 
 	@Column(length = 1024)
@@ -295,6 +296,7 @@ public class Corpus implements Serializable
 			{
 				r.lazyLoad();
 			}
+
 		}
 
 		count = repository.countByCorpusId(id);

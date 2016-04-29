@@ -6,12 +6,9 @@
 package cats.twitter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-
-import org.apache.solr.client.solrj.beans.Field;
-import org.springframework.data.solr.core.mapping.Indexed;
-import org.springframework.data.solr.core.mapping.SolrDocument;
 
 import java.util.Date;
 
@@ -24,7 +21,6 @@ import java.util.Date;
 public class Tweet {
 
     @Id
-    @Indexed
     @SequenceGenerator(name="tweet_seq",
             sequenceName="tweet_seq",
             allocationSize=1)
@@ -32,7 +28,6 @@ public class Tweet {
             generator="tweet_seq")
     private Long id;
     
-    @Field
     private Long author;
 
     @JsonIgnore
@@ -44,16 +39,16 @@ public class Tweet {
     @ManyToOne
     private SubCorpus subCorpus;
 
-    @Field
+    @Type(type="text")
+    @Column(name = "text")
     private String text;
     
-    @Field
     private String location;
-    
-    @Field
+
+    @Type(type="text")
+    @Column(name = "descriptionAuthor")
     private String descriptionAuthor;
     
-    @Field
     private String name;
 
     private Date date;

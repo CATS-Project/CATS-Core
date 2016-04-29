@@ -1,5 +1,7 @@
 package cats.twitter.model;
 
+import org.hibernate.annotations.Type;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +27,8 @@ public class Module
 	String endpoint;
 
 	private String name;
+	@Type(type="text")
+	@Column(name = "description")
 	private String description;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
