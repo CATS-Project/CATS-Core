@@ -1,6 +1,6 @@
 ## Event detection
 ### Description
-Event detection consists in automatically identifying and describing (temporally and textually speaking) events reported in tweets. This module relies on MABED (i.e. Mention-Anomaly-Based Event Detection).
+Event detection consists in automatically identifying and describing (temporally and textually speaking) events reported in tweets. This module relies on <a href="http://mediamining.univ-lyon2.fr/people/guille/mabed.php" target="_blank">MABED</a> (i.e. Mention-Anomaly-Based Event Detection).
 
 ### Parameters
 - Endpoint: http://mediamining.univ-lyon2.fr:5000/detect_events
@@ -11,7 +11,7 @@ Event detection consists in automatically identifying and describing (temporally
 
 ## Topic modeling
 ### Description
-Topic modeling is a way of automatically discovering hidden themes, i.e. topics, that pervade a collection of tweets. Topic models can help organizing, understanding, and summarizing large amounts of tweets.
+Topic modeling is a way of automatically discovering hidden themes, i.e. topics, that pervade a collection of tweets. Topic models can help organizing, understanding, and summarizing large amounts of tweets. This module relies on the <a href="http://mediamining.univ-lyon2.fr/people/guille/tom.php" target="_blank">TOM</a>.
 
 ### Parameters
 - Endpoint: http://mediamining.univ-lyon2.fr:5000/infer_topics
