@@ -4,10 +4,10 @@ Event detection consists in automatically identifying and describing (temporally
 
 ### Parameters
 - Endpoint: http://mediamining.univ-lyon2.fr:5000/detect_events
-- Top k events (e.g. 10): number
-- Time-slice length in minutes (e.g. 30, 60 or 720): number
-- Theta (default to 0.5): number
-- Sigma (default to 0.5): number
+- Top k events (e.g. 10): number (k)
+- Time-slice length in minutes (e.g. 30, 60 or 720): number (tsl)
+- Theta (default to 0.5): number (theta)
+- Sigma (default to 0.5): number (sigma)
 
 ## Topic modeling
 ### Description
@@ -15,9 +15,9 @@ Topic modeling is a way of automatically discovering hidden themes, i.e. topics,
 
 ### Parameters
 - Endpoint: http://mediamining.univ-lyon2.fr:5000/infer_topics
-- Number of topics (e.g. 10, 15 or 20): number
-- Model (either NMF or LDA): text
-- Language (e.g. english or french): text
+- Number of topics (e.g. 10, 15 or 20): number (k)
+- Model (either NMF or LDA): text (model)
+- Language (e.g. english or french): text (lang)
 
 ## Vocabulary
 ### Description
