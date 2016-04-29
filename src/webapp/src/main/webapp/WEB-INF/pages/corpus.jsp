@@ -86,7 +86,7 @@
 
         <div class="row" data-ng-app="modules-chooser">
             <div class="col s12">
-                <h4>Here are the actions available:</h4>
+                <h4>Analysis modules:</h4>
                 <c:if test="${fn:length(modules) ne 0}">
                     <ul class="collapsible popout" data-collapsible="accordion">
                         <c:forEach items="${modules}" var="module">
@@ -128,6 +128,11 @@
                                         </c:forEach>
                                         <input type="hidden" name="moduleId" value="${module.id}"/>
                                         <input type="hidden" name="subcorpus" value="false"/>
+
+                                        <label>Please don't close this page or refresh the browser while CATS is loading
+                                            your data. Once the data have been loaded, the module will run in the
+                                            background and you'll be taken to the homepage.
+                                        </label>
                                         <button
                                                 class="btn waves-effect waves-light" type="submit">Launch
                                         </button>
@@ -145,7 +150,7 @@
         </div>
         <div class="row">
             <div class="col s12">
-                <h4>Launch chained treatements</h4>
+                <h4>Chained analysis:</h4>
                 <c:if test="${modules.size() != 0}">
                     <form method="post" id="formChain" action="<c:url value="/module/request-chained"/>">
                         <div class="row">
