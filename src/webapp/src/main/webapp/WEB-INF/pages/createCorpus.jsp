@@ -21,7 +21,26 @@
                 <div class="collapsible-body" style="padding: 1rem;">
                     <div class="row">
                         <div class="col s12">
-                            <p>Columns:<br/>Id, Author, Date, Text ,Location, DescriptionAuthor, Name</p>
+                            <p>
+                                You should provide a CSV file (to learn more about the CSV format, see the
+                                <a href="https://en.wikipedia.org/wiki/Comma-separated_values">Wikipedia</a> article
+                                for instance) that describes your corpus according to the following fields:
+                            </p>
+
+                            <ul style="margin-left:50px;">
+                                <li>Id (mandatory, numerical)</li>
+                                <li>AuthorId (mandatory, numerical)</li>
+                                <li>Date (mandatory, YYYY-MM-DD HH:MM:SS)</li>
+                                <li>Text (mandatory, text)</li>
+                                <li>Location (optional, 2 longitude,latitude pairs separated by a space)</li>
+                                <li>AuthorDescription (optional, text)</li>
+                                <li>AuthorName (optional, text)</li>
+                            </ul>
+
+                            <p>
+                                The first line of the file should be the following header: Id, AuthorId, Date, Text, Location, AuthorDescription, AuthorName.
+                                The subsequent lines of the file should describe a document each.
+                            </p>
                             <form action="<c:url value="/corpus/import"/>" enctype="multipart/form-data" method="post">
                                 <div class="file-field input-field">
                                     <div class="btn">
