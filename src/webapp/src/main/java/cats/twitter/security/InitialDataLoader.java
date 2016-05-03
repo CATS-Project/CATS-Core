@@ -45,12 +45,6 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	@Transactional
 	public void onApplicationEvent(ContextRefreshedEvent event)
 	{
-		Properties properties = new Properties();
-		try {
-			properties.load(new FileInputStream("/Users/Anthony/Documents/Master/Stage/CATS/src/webapp/src/main/java/cats/twitter/security/AdminLogin.properties"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		if (alreadySetup)
@@ -59,12 +53,12 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		Authority adminAuth = createRoleIfNotFound(AuthoritiesConstants.ADMIN);
 		Authority userAuth = createRoleIfNotFound(AuthoritiesConstants.USER);
 
-		Optional<User> ouser = userRepository.findOneByLogin(properties.getProperty("login"));
+		Optional<User> ouser = userRepository.findOneByLogin("test");
 		if (!ouser.isPresent())
 		{
 			User user = new User();
-			user.setLogin(properties.getProperty("login"));
-			user.setPassword(encoder.encode(properties.getProperty("password")));
+			user.setLogin("test");
+			user.setPassword(encoder.encode("test"));
 			user.setActivated(true);
 			user.getAuthorities().add(userAuth);
 			user.getAuthorities().add(adminAuth);
