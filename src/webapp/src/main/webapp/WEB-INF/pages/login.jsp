@@ -56,9 +56,9 @@
 		<p>CATS (i.e. Collection and Analysis of Tweets made Simple) is an open-source, scalable, Web-application designed to support researchers who want to carry out studies based on tweets. The purpose of CATS is twofold: (i) allow people to collect tweets (ii) enable them to analyze these tweets thanks to efficient tools (e.g. event detection, topic modeling, named-entity recognition).</p>
         <p>To learn more about CATS, check out:
             <ul>
-                <li>The wiki: <a href="https://github.com/CATS-Project/CATS/wiki">https://github.com/CATS-Project/CATS/wiki</a></li>
+                <li>The wiki: <a href="https://github.com/CATS-Project/CATS-Core/wiki">https://github.com/CATS-Project/CATS-Core/wiki</a></li>
                 <li>The paper: <a href="http://dl.acm.org/citation.cfm?id=2874320">http://dl.acm.org/citation.cfm?id=2874320</a></li>
-                <li>The source code: <a href="https://github.com/CATS-Project/CATS/">https://github.com/CATS-Project/CATS/</a></li>
+                <li>The source code: <a href="https://github.com/CATS-Project/">https://github.com/CATS-Project/</a></li>
             </ul>
         </p>
 
