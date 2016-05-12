@@ -4,17 +4,21 @@
  * and open the template in the editor.
  */
 package cats.twitter.repository;
+import java.util.Date;
 import java.util.List;
 import cats.twitter.model.Tweet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.solr.repository.SolrRepository;
+import org.springframework.data.jpa.repository.Temporal;
+
+import javax.persistence.TemporalType;
+
 /**
  *
  * @author p0807460
 **/ 
-public interface TweetRepository extends  SolrRepository<Tweet, Long>, JpaRepository<Tweet, Long>{
+public interface TweetRepository extends JpaRepository<Tweet, Long>{
     List<Tweet> findAll();
     
     Page<Tweet> findByCorpusId(Long corpusId,Pageable pageable);
@@ -25,5 +29,9 @@ public interface TweetRepository extends  SolrRepository<Tweet, Long>, JpaReposi
 
     List<Tweet> findByCorpusId(Long corpusId);
     List<Tweet> findBySubCorpusId(Long subCorpusId);
+
+    List<Tweet> findByCorpusIdAndDateBetween(Long corpusId, Date from, Date to);
+    List<Tweet> findByCorpusIdAndDateBefore(Long corpusId, Date from);
+    List<Tweet> findByCorpusIdAndDateAfter(Long corpusId, Date from);
 
 }

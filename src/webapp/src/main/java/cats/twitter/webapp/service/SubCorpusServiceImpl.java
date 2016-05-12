@@ -3,6 +3,7 @@ package cats.twitter.webapp.service;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -106,9 +107,20 @@ public class SubCorpusServiceImpl implements SubCorpusService
 
 	@Transactional
 	public SubCorpus createSubCorpus(Long corpusId, String name, Optional<String> regexp, Optional<String[]> hashtags,
-		Optional<String[]> mentions)
+		Optional<String[]> mentions, Optional<Date> start, Optional<Date> end)
 	{
 		Corpus corpus = corpusRepository.findOne(corpusId);
+		List<Tweet> tweetList;
+		if(start.isPresent() && end.isPresent())
+			tweetList = tweetRepository.findByCorpusIdAndDateBetween(corpusId, start.get(), end.get());
+		else if(start.isPresent() && !end.isPresent())
+			tweetList = tweetRepository.findByCorpusIdAndDateAfter(corpusId, start.get());
+		else if(!start.isPresent() && end.isPresent())
+			tweetList = tweetRepository.findByCorpusIdAndDateBefore(corpusId, end.get());
+		else
+		{
+			tweetList = corpus.getTweets();
+		}
 		SubCorpus sub = new SubCorpus();
 		sub.setCreationDate(new Date());
 		sub.setName(name);
@@ -125,15 +137,13 @@ public class SubCorpusServiceImpl implements SubCorpusService
 		{
 			sub.setMentions(mentions.get());
 		}
-
-
 		Pattern pRegex = Pattern.compile(sub.getRegex());
 		Pattern pTags;
 		Matcher m;
 		Boolean isFiltered = false;
 		if (corpus != null)
 		{
-			for (Tweet atweet : corpus.getTweets())
+			for (Tweet atweet : tweetList)
 			{
 				m = pRegex.matcher(atweet.getText());
 				if (m.find())

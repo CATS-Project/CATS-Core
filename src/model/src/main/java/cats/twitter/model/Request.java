@@ -43,10 +43,10 @@ public class Request
 
 	private Long idChain;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE })
 	private Request nextRequest;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade =  {CascadeType.MERGE, CascadeType.REMOVE })
 	private Request previousRequest;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

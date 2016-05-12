@@ -101,7 +101,7 @@
                                           action="<c:url value="/module/request/${module.id}"/>">
                                         <div class="input-field s12">
                                             <select name="corpusId" required>
-                                                <option value=""  disabled selected>Choose your option</option>
+                                                <option value=""  disabled selected>Choose your corpus</option>
                                                 <c:forEach var="corpu" items="${corpus}">
                                                     <option value="${corpu.id}">${corpu.name}</option>
                                                     <c:forEach var="subcorpus" items="${corpu.subCorpuses}">
@@ -156,7 +156,7 @@
                         <div class="row">
                             <div class="input-field s11">
                                 <select name="corpusId">
-                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="" disabled selected>Choose your corpus</option>
                                     <c:forEach var="corpu" items="${corpus}">
                                         <option value="${corpu.id}">${corpu.name}</option>
                                     </c:forEach>

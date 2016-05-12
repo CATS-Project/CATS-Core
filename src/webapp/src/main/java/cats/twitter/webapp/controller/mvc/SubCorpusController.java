@@ -1,6 +1,7 @@
 package cats.twitter.webapp.controller.mvc;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,20 +83,28 @@ public class SubCorpusController
 		@RequestParam(value = "regexp", required = false) String regexp,
 		@RequestParam(value = "hashtags", required = false) String hashtags,
 		@RequestParam(value = "mentions", required = false) String mentions,
+		@RequestParam(value="startDate", required = false) String startDate,
+		@RequestParam(value = "endDate", required = false) String endDate,
 		@ModelAttribute("user") User user,
 		Model model)
 	{
 		Optional<String> regexpOp = regexp == null ? Optional.empty() : Optional.of(regexp);
 		String[] tags = hashtags.replace(" ","").split(",");
 		String[] ments = mentions.replace(" ","").split(",");
-		if(tags[0] == "")
+		if(tags[0].equals(""))
 			tags = null;
-		if(ments[0] == "")
+		if(ments[0].equals(""))
 			ments = null;
+		if(startDate.equals(""))
+			startDate= null;
+		if(endDate.equals(""))
+			endDate = null;
 		Optional<String[]> hashtagsOp = tags == null ? Optional.empty() : Optional.of(tags);
 		Optional<String[]> mentionsOp = ments == null ? Optional.empty() : Optional.of(ments);
+		Optional<Date> startOp = startDate == null ? Optional.empty() : Optional.of(new Date(startDate));
+		Optional<Date> endOp = endDate == null ? Optional.empty() : Optional.of(new Date(endDate));
 
-		SubCorpus sub = service.createSubCorpus(corpusId, name, regexpOp, hashtagsOp, mentionsOp);
+		SubCorpus sub = service.createSubCorpus(corpusId, name, regexpOp, hashtagsOp, mentionsOp, startOp, endOp);
 
 		return "redirect:/sub/" + sub.getId();
 	}
