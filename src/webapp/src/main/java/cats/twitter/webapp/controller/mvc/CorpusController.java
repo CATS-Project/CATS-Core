@@ -232,6 +232,7 @@ public class CorpusController {
             @ModelAttribute("user") User user,
             Model model
     ) {
+
         //Some dirty things here...
         Long[] ids = null;
         if (users != null) {
@@ -244,7 +245,7 @@ public class CorpusController {
             }).toArray(Long[]::new);
         }
         double[][] doubles = null;
-        if (location != null) {
+        if (location != null && location.get(0) != null) {
             doubles = new double[][]{{location.get(1), location.get(0)}, {location.get(3), location.get(2)}};
         }
         Optional<String[]> okeywords = keywords == null ? Optional.empty() : Optional.of(keywords.toArray(new String[keywords.size()]));

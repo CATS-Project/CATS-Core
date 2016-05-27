@@ -77,8 +77,6 @@ public class Collect extends Observable implements ICollect, Runnable {
         dateEnd.add(Calendar.DAY_OF_YEAR,duree);
         cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true);
-        //cb.setHttpProxyHost("proxy.univ-lyon1.fr");
-        //cb.setHttpProxyPort(3128);
         cb.setOAuthConsumerKey(user.getConsumerKey());
         System.out.println("CONSUMER KEY "+user.getConsumerKey());
         cb.setOAuthConsumerSecret(user.getConsumerSecret());
@@ -151,7 +149,7 @@ public class Collect extends Observable implements ICollect, Runnable {
         };
         twitterStream.addListener(listener);
         twitterStream.filter(filter);
-        twitterStream.sample();
+        //twitterStream.sample();
 
         return false;
     }

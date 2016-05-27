@@ -66,9 +66,9 @@
         <p>
         Current contributors:
             <ul>
-                <li><a href="http://mediamining.univ-lyon2.fr/people/guille">Adrien Guille</a>, PhD in Computer Science, University of Lyon (ERIC, Lyon 2)</li>
-                <li><a href="http://univ-lyon2.academia.edu/MichaelGauthier">Michael Gauthier</a>, PhD student in Socio-Linguistics, University of Lyon (CRTT, Lyon 2)</li>
-                <li><a href="https://www.linkedin.com/in/anthony-deseille-775301b3">Anthony Deseille</a>, Graduate student in Computer Science, University of Lyon (ERIC, Lyon 1)</li>
+                <li><a href="mailto:adrien.guille@univ-lyon2.fr">Adrien Guille</a>, PhD in Computer Science, University of Lyon (ERIC, Lyon 2)</li>
+                <li><a href="mailto:Michael.Gauthier@univ-lyon2.fr">Michael Gauthier</a>, PhD student in Socio-Linguistics, University of Lyon (CRTT, Lyon 2)</li>
+                <li><a href="mailto:anthony.deseille@etu.univ-lyon1.fr">Anthony Deseille</a>, Graduate student in Computer Science, University of Lyon (ERIC, Lyon 1)</li>
             </ul>
         Past contributors:
             <ul>
