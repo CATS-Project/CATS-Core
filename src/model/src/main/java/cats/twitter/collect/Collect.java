@@ -94,6 +94,7 @@ public class Collect extends Observable implements ICollect, Runnable {
 
             @Override
             public void onStatus(Status status) {
+
                 if (!corpus.getState().equals(State.INPROGRESS)){
                     setStatus(State.INPROGRESS);
                 }
@@ -122,22 +123,24 @@ public class Collect extends Observable implements ICollect, Runnable {
 
             @Override
             public void onDeletionNotice(StatusDeletionNotice sdn) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                System.out.println(sdn);
             }
 
             @Override
             public void onTrackLimitationNotice(int i) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                corpus.setLimitationNotice(i);
+                corpus = corpusRepository.save(corpus);
+
             }
 
             @Override
             public void onScrubGeo(long l, long l1) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                System.out.println(l + "" + l1);
             }
 
             @Override
             public void onStallWarning(StallWarning sw) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                System.out.println(sw);
             }
 
             @Override
@@ -149,7 +152,6 @@ public class Collect extends Observable implements ICollect, Runnable {
         };
         twitterStream.addListener(listener);
         twitterStream.filter(filter);
-        //twitterStream.sample();
 
         return false;
     }

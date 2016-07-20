@@ -1,5 +1,6 @@
 package cats.twitter.webapp.controller.mvc;
 
+import cats.twitter.webapp.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -82,7 +83,7 @@ public class UserController
 		}
 		if (params != null)
 		{
-			model.addObject("error","Please verify your informations");
+			model.addObject("error", "Please verify your informations");
 		}
 
 		model.setViewName("register");
@@ -130,6 +131,8 @@ public class UserController
 			try
 			{
 				userRepository.save(userToAdd);
+				MailService mailService = new MailService();
+				mailService.SendMailActivation(email);
 				return "redirect:/connect?success";
 			}
 			catch (UnexpectedRollbackException ex)

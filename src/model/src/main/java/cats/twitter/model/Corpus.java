@@ -71,14 +71,6 @@ public class Corpus implements Serializable
 
 	private Date lauchDate;
 
-	public String getLang() {
-		return lang;
-	}
-
-	public void setLang(String lang) {
-		this.lang = lang;
-	}
-
 	private Date stopDate;
 	private String lang;
 
@@ -87,6 +79,8 @@ public class Corpus implements Serializable
 
 	@Transient
 	private long count;
+
+	private Integer limitationNotice;
 
 	public User getUser()
 	{
@@ -137,9 +131,27 @@ public class Corpus implements Serializable
 		return fils;
 	}
 
+	public String getLang() {
+		return lang;
+	}
+
+	public void setLang(String lang) {
+		this.lang = lang;
+	}
+
+	public int getLimitationNotice() {
+		if(limitationNotice == null)
+			return 0;
+		else
+			return limitationNotice;
+	}
+
+	public void setLimitationNotice(int limitationNotice) {
+		this.limitationNotice = limitationNotice;
+	}
+
 	@Override
-	public boolean equals(Object o)
-	{
+	public boolean equals(Object o) {
 		if (this == o)
 			return true;
 		if (o == null || getClass() != o.getClass())
@@ -152,33 +164,27 @@ public class Corpus implements Serializable
 	}
 
 	@Override
-	public int hashCode()
-	{
+	public int hashCode(){
 		return id != null ? id.hashCode() : 0;
 	}
 
-	public Set<Request> getRequests()
-	{
+	public Set<Request> getRequests(){
 		return requests;
 	}
 
-	public void setErrorMessage(String errorMessage)
-	{
+	public void setErrorMessage(String errorMessage){
 		this.errorMessage = errorMessage;
 	}
 
-	public String getErrorMessage()
-	{
+	public String getErrorMessage(){
 		return errorMessage;
 	}
 
-	public void setDuree(int duree)
-	{
+	public void setDuree(int duree){
 		this.duree = duree;
 	}
 
-	public int getDuree()
-	{
+	public int getDuree(){
 		return duree;
 	}
 
@@ -190,8 +196,7 @@ public class Corpus implements Serializable
 		return format.format(stopDate);
 	}
 
-	public void setSubCorpuses(List<SubCorpus> subs)
-	{
+	public void setSubCorpuses(List<SubCorpus> subs) {
 		if (subs != null)
 		{
 			this.subCorpuses = subs;
@@ -203,24 +208,21 @@ public class Corpus implements Serializable
 		return subCorpuses;
 	}
 
-	public void setKeyWords(String[] keyWords)
-	{
+	public void setKeyWords(String[] keyWords) {
 		if (keyWords != null)
 		{
 			this.keyWords = Arrays.asList(keyWords);
 		}
 	}
 
-	public void setFollows(String[] follows)
-	{
+	public void setFollows(String[] follows) {
 		if (follows != null)
 		{
 			this.follows = Arrays.asList(follows);
 		}
 	}
 
-	public void setLocation(double[][] location)
-	{
+	public void setLocation(double[][] location) {
 		if (location != null)
 		{
 			this.location = new Location(location[0][1],location[0][0],location[1][1],location[1][0]);
@@ -232,8 +234,7 @@ public class Corpus implements Serializable
 		return lauchDate;
 	}
 
-	public void setState(Collect.State state)
-	{
+	public void setState(Collect.State state) {
 		this.state = state;
 		if (state.equals(Collect.State.ERROR) || state.equals(Collect.State.SHUTDOWN))
 			stopDate = new Date();
@@ -256,8 +257,7 @@ public class Corpus implements Serializable
 		return follows;
 	}
 
-	public Location getLocation()
-	{
+	public Location getLocation() {
 		return location;
 	}
 
@@ -267,8 +267,7 @@ public class Corpus implements Serializable
 	 * @param repository TweetRepository
 	 * @param deep Loading the requests or not.
      */
-	public void lazyLoad(TweetRepository repository, boolean deep)
-	{
+	public void lazyLoad(TweetRepository repository, boolean deep) {
 		if (follows == null || follows.size() == 0)
 			follows = null;
 		else

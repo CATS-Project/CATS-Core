@@ -5,6 +5,7 @@ import cats.twitter.model.Request;
 import cats.twitter.repository.ModuleRepository;
 import cats.twitter.repository.RequestRepository;
 import cats.twitter.webapp.controller.mvc.dto.ModuleDTO;
+import cats.twitter.webapp.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -98,6 +99,8 @@ public class AdminController
 		if (user != null)
 		{
 			user.setActivated(true);
+			MailService mailService = new MailService();
+			mailService.SendMailActivated(user.getEmail());
 			userRepository.save(user);
 		}
 

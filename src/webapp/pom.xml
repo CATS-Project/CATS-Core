@@ -16,6 +16,7 @@
         <java.servlet.version>2.5</java.servlet.version>
 		<java.servlet.jsp.version>2.2</java.servlet.jsp.version>
 		<spring.security.version>4.0.1.RELEASE</spring.security.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
@@ -32,6 +33,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>1.20.0</version>
+        </dependency>
         <dependency>
             <groupId>cats.twitter</groupId>
             <artifactId>model</artifactId>
@@ -114,6 +120,11 @@
             <groupId>org.simpleframework</groupId>
             <artifactId>simple</artifactId>
             <version>5.1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
         </dependency>
 
 

@@ -6,6 +6,8 @@
 <html>
 <head>
     <title>CATS : ${title}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
     <jsp:include page="../pages/head.jsp" />
     <jsp:invoke fragment="header"/>
     <style>

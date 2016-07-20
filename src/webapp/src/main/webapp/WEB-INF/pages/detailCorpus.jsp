@@ -144,6 +144,12 @@
                                 <td>${corpus.launchDateString}</td>
                             </tr>
                         </c:if>
+                        <c:if test="${corpus.limitationNotice != null}">
+                            <tr>
+                                <td>limitationNotice :</td>
+                                <td>${corpus.limitationNotice}</td>
+                            </tr>
+                        </c:if>
                     </table>
 
                 </div>
