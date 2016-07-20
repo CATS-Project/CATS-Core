@@ -105,7 +105,10 @@ public class UserController
 		@RequestParam("email") String email,
 		@RequestParam("password") String password,
 		@RequestParam("firstName") String firstName,
-		@RequestParam("lastName") String lastName)
+		@RequestParam("lastName") String lastName,
+		@RequestParam("affiliation") String affiliation,
+		@RequestParam("interest") String interest)
+
 	{
 		User userToAdd = new User();
 
@@ -122,6 +125,8 @@ public class UserController
 		userToAdd.setPassword(encoder.encode(password));
 		userToAdd.setFirstName(firstName);
 		userToAdd.setLastName(lastName);
+		userToAdd.setAffiliation(affiliation);
+		userToAdd.setInterest(interest);
 		Authority userAuth = new Authority();
 		userAuth.setName(AuthoritiesConstants.USER);
 		userToAdd.getAuthorities().add(userAuth);
@@ -132,7 +137,7 @@ public class UserController
 			{
 				userRepository.save(userToAdd);
 				MailService mailService = new MailService();
-				mailService.SendMailActivation(email);
+				mailService.SendMailActivation(email, login, affiliation, interest);
 				return "redirect:/connect?success";
 			}
 			catch (UnexpectedRollbackException ex)

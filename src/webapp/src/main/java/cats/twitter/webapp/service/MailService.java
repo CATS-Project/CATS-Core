@@ -17,8 +17,8 @@ import javax.mail.internet.MimeMultipart;
  */
 public class MailService {
 
-    private final String MAIL = "cats.activation@gmail.com";
-    private final String MDP = "FabienRico.";
+    private final String MAIL = "test";
+    private final String MDP = "test";
 
     private Properties props;
     public MailService(){
@@ -33,33 +33,69 @@ public class MailService {
     }
 
 
-    public void SendMailActivation(String user){
+    public void SendMailActivation(String mail, String user, String affiliation, String interest){
         Session session = Session.getInstance(props, null);
         MimeMessage message = new MimeMessage(session);
         try {
             InternetAddress from = new InternetAddress(MAIL);
+
+            //Mail for user
             message.setSubject("CATS: activation pending");
             message.setFrom(from);
-            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(user));
+            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
             Multipart multipart = new MimeMultipart("alternative");
             BodyPart messageBodyPart = new MimeBodyPart();
             messageBodyPart.setText("");
             multipart.addBodyPart(messageBodyPart);
             messageBodyPart = new MimeBodyPart();
-            String htmlMessage = "<h1>Hi {$login},</h1>" +
+            String htmlMessage = "<p>Hi "+ user+",</p>" +
                     "<p>" +
                     "You recently registered on CATS." +
                     "</p>" +
                     "<p>The administrators have been notified and will review your registration. You will receive an e-mail once your account has been activated.</p>" +
-                    "<p>Thank you for your interest in CATS!</p>" +
-                    "<p>The CATS team</p>" +
-                    "<p><a href='http://mediamining.univ-lyon2.fr/cats'>http://mediamining.univ-lyon2.fr/cats</a>";
+                    "<p>Thank you for your interest in CATS!</br>" +
+                    "The CATS team</br>" +
+                    "<a href='http://mediamining.univ-lyon2.fr/cats'>http://mediamining.univ-lyon2.fr/cats</a>";
             messageBodyPart.setContent(htmlMessage, "text/html");
             multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);
+
             Transport transport = session.getTransport("smtp");
             transport.connect("smtp.gmail.com", MAIL, MDP);
-            System.out.println("Transport: " + transport.toString());
+            transport.sendMessage(message, message.getAllRecipients());
+
+            //Mail for user
+            message = new MimeMessage(session);
+            message.setSubject("CATS: activation pending");
+            message.setFrom(from);
+            //InternetAddress[] mails = new InternetAddress[3];
+            //mails[0] = InternetAddress.pa;
+
+            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("anthony.deseille@gmail.com, adrien.guille@univ-lyon2.fr, michael.gauthier.uni@gmail.com"));
+            multipart = new MimeMultipart("alternative");
+            messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText("");
+            multipart.addBodyPart(messageBodyPart);
+            messageBodyPart = new MimeBodyPart();
+            htmlMessage =
+                    "<html>"+
+                    "<head><meta http-equiv=\"Content-Type\"  content=\"text/html charset=UTF-8\" /></head>"+
+                    "<body>"+
+                    "<h3>The following message has been sent to "+mail+"</h3>"+
+                    "<p>Hi "+ user+",</p>" +
+                    "<p>You recently registered on CATS.</p>" +
+                    "<p>The administrators have been notified and will review your registration. You will receive an e-mail once your account has been activated.</p>" +
+                    "<p>Thank you for your interest in CATS!</br>" +
+                    "The CATS team</br>" +
+                    "<a href='http://mediamining.univ-lyon2.fr/cats'>http://mediamining.univ-lyon2.fr/cats</a>"+
+                    "<h3>Registration info</h3>"+
+                    "<p>affiliation: "+affiliation+"</p>"+
+                    "<p>interest: "+interest+"</p>"+
+                    "</body>"+
+                    "</html>";
+            messageBodyPart.setContent(htmlMessage, "text/html");
+            multipart.addBodyPart(messageBodyPart);
+            message.setContent(multipart);
             transport.sendMessage(message, message.getAllRecipients());
 
 

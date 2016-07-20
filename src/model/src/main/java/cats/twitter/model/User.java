@@ -73,6 +73,10 @@ public class User implements Serializable, UserDetails
 
 	private String imageUrl;
 
+	private String interest;
+
+	private String affiliation;
+
 	@ManyToMany
 	@JoinTable(
 		name = "USER_AUTHORITY",
@@ -229,6 +233,22 @@ public class User implements Serializable, UserDetails
 	public void setCorpus(List<Corpus> c)
 	{
 		this.corpus = c;
+	}
+
+	public String getInterest() {
+		return interest;
+	}
+
+	public void setInterest(String interest) {
+		this.interest = interest;
+	}
+
+	public String getAffiliation() {
+		return affiliation;
+	}
+
+	public void setAffiliation(String affiliation) {
+		this.affiliation = affiliation;
 	}
 
 	public boolean hasAllTheirTokens()
