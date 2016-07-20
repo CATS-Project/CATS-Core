@@ -17,7 +17,7 @@
     <jsp:body>
         <ul class="collapsible" data-collapsible="accordion">
             <li>
-                <div class="collapsible-header ${user.tokenOk ? "" : "active"}"><i class="material-icons">swap_vert</i>Import CSV corpus</div>
+                <div class="collapsible-header ${user.tokenOk ? "" : "active"}"><i class="material-icons">swap_vert</i>Import a corpus</div>
                 <div class="collapsible-body" style="padding: 1rem;">
                     <div class="row">
                         <div class="col s12">
@@ -48,7 +48,7 @@
                                         <input type="file" name="file">
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text"/>
+                                        <input class="file-path validate" type="text">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -68,20 +68,19 @@
             </li>
             <c:if test="${user.tokenOk}">
                 <li>
-                    <div class="collapsible-header active"><i class="material-icons">trending_up</i>Collect tweets</div>
+                    <div class="collapsible-header"><i class="material-icons">trending_up</i>Collect tweets</div>
                     <div class="collapsible-body" style="padding: 1rem;"  data-ng-app="corpus-form">
                         <form class="col s12" action="<c:url value="/corpus"/>" method="post" data-submit-Listener>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input id="duration" type="number" class="validate" name="duration">
-                                    <label for="duration">Duration (number of days during which tweets should be collected, example
-                                        "30")</label>
+                                    <label for="duration">Duration (number of days during which tweets should be collected, e.g. 10)</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input id="name" type="text" class="validate" name="name">
-                                    <label for="name">New corpora name</label>
+                                    <label for="name">New corpus name</label>
                                 </div>
                             </div>
                             <div class="row">
