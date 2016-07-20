@@ -20,7 +20,7 @@
         <div class="row">
             <form class="col s12" action="<c:url value="/sub"/>" method="post">
 				<div class="row">
-					<p>This interface allows you to isolate a specific part of your corpus by creating a sub-corpus. You can choose from one or several options, like dates, key words, hashtags or mentions present in the tweets.</p>
+					<p>This interface allows you to isolate a specific part of your corpus by creating a sub-corpus. You can choose from one or several options, like dates, keywords, hashtags or mentions present in the tweets.</p>
 				</div>
 				<br>
                 <div class="row">
