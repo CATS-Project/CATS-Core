@@ -86,7 +86,7 @@
 
         <div class="row" data-ng-app="modules-chooser">
             <div class="col s12">
-                <h4>Analysis modules:</h4>
+                <h4>Run a module:</h4>
                 <c:if test="${fn:length(modules) ne 0}">
                     <ul class="collapsible popout" data-collapsible="accordion">
                         <c:forEach items="${modules}" var="module">
@@ -143,14 +143,14 @@
                     </ul>
                 </c:if>
                 <c:if test="${modules.size() == 0}">
-                    No modules available :(
+                    No module configured yet :(
                 </c:if>
 
             </div>
         </div>
         <div class="row">
             <div class="col s12">
-                <h4>Chained analysis:</h4>
+                <h4>Run modules in sequence:</h4>
                 <c:if test="${modules.size() != 0}">
                     <form method="post" id="formChain" action="<c:url value="/module/request-chained"/>">
                         <div class="row">
@@ -197,7 +197,7 @@
                     </form>
                 </c:if>
                 <c:if test="${modules.size() == 0}">
-                    No modules available :(
+                    No module configured yet :(
                 </c:if>
             </div>
         </div>
