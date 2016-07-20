@@ -53,6 +53,16 @@
                     <label for="lastName">Last Name</label>
                 </div>
             </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="affiliation" name="affiliation" class="validate materialize-textarea"></textarea>
+                    <label for="affiliation">Affiliation *</label>
+                </div>
+                <div class="input-field col s6">
+                    <textarea id="interest" name="interest" class="validate materialize-textarea"></textarea>
+                    <label for="interest">Tell us why you're interested in CATS</label>
+                </div>
+            </div>
             <button class="btn waves-effect waves-light" type="submit" style="width:18em;">
                 Register
             </button>
