@@ -108,20 +108,24 @@ public class MailService {
         }
     }
 
-    public void SendMailActivated(String user){
+    public void SendMailActivated(String mail, String user){
         Session session = Session.getInstance(props, null);
         MimeMessage message = new MimeMessage(session);
         try {
             InternetAddress from = new InternetAddress(MAIL);
-            message.setSubject("Activated mail");
+            message.setSubject("CATS: your account has been activated");
             message.setFrom(from);
-            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(user));
+            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
             Multipart multipart = new MimeMultipart("alternative");
             BodyPart messageBodyPart = new MimeBodyPart();
             messageBodyPart.setText("some text to send");
             multipart.addBodyPart(messageBodyPart);
             messageBodyPart = new MimeBodyPart();
-            String htmlMessage = "Our html text";
+            String htmlMessage = "<p>Hi "+user+", </p>" +
+                    "<p>Your CATS account has been activated, login now at http://mediamining.univ-lyon2.fr/cats :)</p>" +
+                    "<p>Thank you for your interest in CATS!</br>" +
+                    "The CATS team</br>" +
+                    "http://mediamining.univ-lyon2.fr/cats</p>";
             messageBodyPart.setContent(htmlMessage, "text/html");
             multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);

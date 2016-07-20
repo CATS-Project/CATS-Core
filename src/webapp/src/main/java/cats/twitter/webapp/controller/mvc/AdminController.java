@@ -100,7 +100,7 @@ public class AdminController
 		{
 			user.setActivated(true);
 			MailService mailService = new MailService();
-			mailService.SendMailActivated(user.getEmail());
+			mailService.SendMailActivated(user.getEmail(), user.getLogin());
 			userRepository.save(user);
 		}
 
